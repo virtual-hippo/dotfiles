@@ -2,6 +2,17 @@
 # Claude Code status line (2 lines)
 #  1: dir  git-branch/status  PR  worktree  session-name
 #  2: model [effort]  ctx  5h/7d usage  cache  +/-lines  duration  cost
+#
+# 例:
+#   ~/misc │  main ✓
+#   Opus 5.5 [high] │  ████░░░░░░ 42%/200k │  5h 63%(2h15m) 7d 18%(3d6h) │  91%(43m) │ +120 -8 │  38m │ ~$1.84
+#  - 42%/200k: コンテキストの使用率 / 上限
+#  - 5h 63%(2h15m): 5 時間枠の使用率（リセットまでの時間）。7d は 7 日枠
+#  - 91%(43m): プロンプトキャッシュのヒット率（切れるまでの時間）。切れたら cold
+#  - +120 -8: 追加・削除した行数。38m: 経過時間。~$1.84: 概算コスト
+#  - Git: +ステージ済み ~変更 ?未追跡 !コンフリクト ↑↓ push/pull 待ち。変更なしは ✓
+#
+# 色: 使用率（ctx、5h/7d）は 50% 未満が緑、50% 以上が黄、80% 以上が赤
 import json, os, subprocess, sys, time
 
 try:
