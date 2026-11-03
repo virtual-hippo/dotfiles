@@ -1,0 +1,67 @@
+[terminal.shell]
+program = "/Windows/System32/wsl.exe"
+args = ["~", "-d Ubuntu"]
+
+[window]
+opacity = 0.80
+padding = { x = 12, y = 8 }
+dynamic_padding = true
+decorations_theme_variant = "Dark"
+
+[scrolling]
+history = 50000
+
+[font]
+size = 12.0
+normal = { family = "UDEV Gothic 35NFLG", style = "Regular" }
+bold = { family = "UDEV Gothic 35NFLG", style = "Bold" }
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+unfocused_hollow = true
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+bindings = [
+    { mouse = "Right", action = "Paste" },
+    { mouse = "Middle", action = "PasteSelection" },
+]
+
+[keyboard]
+bindings = [
+    { key = "Return", mods = "Shift", chars = "\n" },
+]
+
+# ---- Color theme: Tokyo Night ----
+[colors.primary]
+background = "#1a1b26"
+foreground = "#c0caf5"
+
+[colors.selection]
+background = "#33467c"
+foreground = "#c0caf5"
+
+[colors.normal]
+black   = "#15161e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#c0caf5"
+
+[terminal]

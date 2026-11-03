@@ -1,0 +1,107 @@
+# Starship 設定（tokyo-night の配色で、帯なし・文字色だけ）
+# https://starship.rs/ja-jp/config/
+"$schema" = "https://starship.rs/config-schema.json"
+
+# 1 行目: 左にディレクトリ・Git・言語・クラウド、右端に実行時間・終了コード・時刻
+# 2 行目: 入力欄
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$nodejs\
+$rust\
+$python\
+$golang\
+$kubernetes\
+$aws\
+$terraform\
+$fill\
+$cmd_duration\
+$status\
+$time
+$character"""
+
+# Git が遅いリポジトリでは、待たずに表示を省く（デフォルトのまま）
+command_timeout = 500
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[❯](bold #9ece6a)"
+error_symbol = "[❯](bold #f7768e)"
+
+# ---- ディレクトリ: 省略せずフルパス（ホームは ~） ----
+[directory]
+style = "bold fg:#7aa2f7"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+truncation_length = 0
+truncate_to_repo = false
+read_only = " 󰌾"
+read_only_style = "fg:#f7768e"
+
+# ---- Git: 軽めに ----
+[git_branch]
+symbol = ""
+format = '[[ $symbol $branch ](fg:#bb9af7)]($style)'
+
+[git_state]
+format = '[[\($state( $progress_current/$progress_total)\) ](fg:#e0af68)]($style)'
+
+[git_status]
+format = '[[($all_status$ahead_behind )](fg:#bb9af7)]($style)'
+ignore_submodules = true   # サブモジュールの中までは調べない
+
+# ---- 言語 ----
+[nodejs]
+symbol = ""
+format = '[[ $symbol ($version) ](fg:#769ff0)]($style)'
+
+[rust]
+symbol = ""
+format = '[[ $symbol ($version) ](fg:#769ff0)]($style)'
+
+[python]
+symbol = ""
+format = '[[ $symbol ($version)( \($virtualenv\)) ](fg:#769ff0)]($style)'
+
+[golang]
+symbol = ""
+format = '[[ $symbol ($version) ](fg:#769ff0)]($style)'
+
+# ---- クラウド・インフラ ----
+[kubernetes]
+disabled = false
+symbol = "󱃾"
+format = '[[ $symbol $context( \($namespace\)) ](fg:#bb9af7)]($style)'
+
+# EKS の長い ARN をクラスタ名だけにする
+[[kubernetes.contexts]]
+context_pattern = "arn:aws:eks:[^:]+:[0-9]+:cluster/(?P<cluster>.+)"
+context_alias = "$cluster"
+
+[aws]
+symbol = ""
+format = '[[ $symbol ($profile)( \($region\)) ](fg:#e0af68)]($style)'
+
+[terraform]
+symbol = "󱁢"
+format = '[[ $symbol $workspace ](fg:#7aa2f7)]($style)'   # $version は terraform を実行して遅いので出さない
+
+# ---- 右端 ----
+[cmd_duration]
+min_time = 2000
+format = "[ $duration]($style) "
+style = "fg:#e0af68"
+
+[status]
+disabled = false
+format = "[ $status]($style) "
+style = "fg:#f7768e"
+
+[time]
+disabled = false
+time_format = "%R"
+format = "[ $time]($style)"
+style = "fg:#a0a9cb"
