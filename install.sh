@@ -32,6 +32,7 @@ link mise/config.toml         ~/.config/mise/config.toml
 link mise/miserc.toml         ~/.config/mise/miserc.toml
 link claude/settings.json     ~/.claude/settings.json
 link claude/statusline.py     ~/.claude/statusline.py
+link claude/skills/grilling   ~/.claude/skills/grilling
 
 # Alacritty（Windows 側の %APPDATA%\alacritty\alacritty.toml）
 if command -v cmd.exe >/dev/null 2>&1; then
