@@ -5,7 +5,7 @@
 #
 # 例:
 #   ~/misc │  main ✓
-#   Opus 5.5 [high] │  ████░░░░░░ 42%/200k │  5h 63%(2h15m) 7d 18%(3d6h) │  91%(43m) │ +120 -8 │  38m │ ~$1.84
+#  󰚩 Opus 5.5 [high] │  ████░░░░░░ 42%/200k │  5h 63%(2h15m) 7d 18%(3d6h) │  91%(43m) │ +120 -8 │  38m │ ~$1.84
 #  - 42%/200k: コンテキストの使用率 / 上限
 #  - 5h 63%(2h15m): 5 時間枠の使用率（リセットまでの時間）。7d は 7 日枠
 #  - 91%(43m): プロンプトキャッシュのヒット率（切れるまでの時間）。切れたら cold
@@ -99,7 +99,7 @@ if g("session_name"): l1.append(f"{DIM}{g('session_name')}{R}")
 
 # ---------- line 2: model & usage ----------
 model = g("model", "display_name") or g("model", "id") or "?"
-m = f"{CYA}{B} {model}{R}"
+m = f"{CYA}{B}󰚩 {model}{R}"
 if g("effort", "level"): m += f" {MAG}[{g('effort','level')}]{R}"
 if g("fast_mode"): m += f" {YEL}fast{R}"
 if g("vim", "mode"): m += f" {DIM}{g('vim','mode')}{R}"
